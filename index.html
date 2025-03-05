@@ -10,16 +10,17 @@
             margin: 0;
             padding: 20px;
             min-height: 100vh;
-            background-color: #f5f5f7;
+            background-color: #1c1c1e;  /* Dark background */
+            color: #ffffff;  /* Light text */
         }
         
         .header {
             text-align: center;
-            padding: 20px;
-            background-color: white;
+            padding: 15px;  /* Reduced padding since we removed the h1 */
+            background-color: #2c2c2e;  /* Darker card background */
             border-radius: 12px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         h1 {
@@ -38,13 +39,13 @@
         .counter {
             padding: 15px;
             border-radius: 8px;
-            background-color: #f8f9fa;
+            background-color: #3c3c3e;  /* Slightly lighter than header */
             text-align: center;
         }
 
         .counter-label {
             font-size: 14px;
-            color: #666;
+            color: #8e8e93;  /* Muted text */
             margin-bottom: 5px;
         }
 
@@ -67,11 +68,10 @@
         }
 
         .container {
-            background-color: white;
+            background-color: #2c2c2e;
+            padding: 20px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            height: 70vh;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
         
         iframe {
@@ -96,40 +96,40 @@
 
         /* Add styles for the form */
         .input-form {
-            background-color: white;
+            background-color: #2c2c2e;
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .form-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(5, 1fr); /* 5 equal columns for 5 fields */
+            gap: 20px; /* Increased gap between items */
             margin-bottom: 15px;
+            padding: 0 10px;
         }
 
         .form-group {
-            display: flex;
-            flex-direction: column;
+            width: 100%;
         }
 
-        .form-group label {
-            margin-bottom: 5px;
-            color: #666;
-        }
-
+        /* Make inputs and selects consistent width */
         .form-group input,
         .form-group select {
+            width: 100%;
+            box-sizing: border-box; /* Include padding and border in width calculation */
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid #48484a;
             border-radius: 6px;
-            font-size: 16px;
+            font-size: 14px;
+            background-color: #3c3c3e;
+            color: #ffffff;
         }
 
         .submit-btn {
-            background-color: #007AFF;
+            background-color: #0A84FF;
             color: white;
             padding: 10px 20px;
             border: none;
@@ -138,22 +138,164 @@
             font-size: 16px;
         }
 
+        .submit-btn:hover {
+            background-color: #0070d8;
+        }
+
         .transactions-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .transactions-table th,
-        .transactions-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
+            background-color: transparent;
         }
 
         .transactions-table th {
-            background-color: #f8f9fa;
-            font-weight: 600;
+            background-color: #3c3c3e;
+            color: #8e8e93;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .transactions-table td {
+            padding: 12px;
+            border-bottom: 1px solid #3c3c3e;
+            color: #ffffff;
+        }
+
+        .transactions-table tr:hover {
+            background-color: #3c3c3e;  /* Darker hover state */
+        }
+
+        .delete-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+            color: #ffffff;  /* Light text for emoji */
+        }
+
+        .delete-btn:hover {
+            transform: scale(1.2);
+            transition: transform 0.2s;
+        }
+
+        /* Style for the login screen */
+        #login-screen {
+            background-color: #1c1c1e !important;  /* Dark background */
+            color: #ffffff;
+        }
+
+        #login-screen input {
+            background-color: #2c2c2e;
+            border: 1px solid #3c3c3e;
+            color: #ffffff;
+        }
+
+        /* Update input form container */
+        .input-form {
+            background-color: #2c2c2e;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Update container for the table */
+        .container {
+            background-color: #2c2c2e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Update form inputs and selects */
+        input[type="date"],
+        input[type="text"],
+        input[type="number"],
+        select {
+            background-color: #3c3c3e !important;
+            color: #ffffff !important;
+            border: 1px solid #48484a !important;
+            border-radius: 6px;
+            padding: 8px;
+            width: 100%;
+        }
+
+        /* Style for input placeholders */
+        input::placeholder {
+            color: #8e8e93;
+        }
+
+        /* Style for select options */
+        option {
+            background-color: #3c3c3e;
+            color: #ffffff;
+        }
+
+        /* Update table styles */
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+        }
+
+        .transactions-table th {
+            background-color: #3c3c3e;
+            color: #8e8e93;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .transactions-table td {
+            padding: 12px;
+            border-bottom: 1px solid #3c3c3e;
+            color: #ffffff;
+        }
+
+        /* Update submit button */
+        .submit-btn {
+            background-color: #0A84FF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .submit-btn:hover {
+            background-color: #0070d8;
+        }
+
+        /* Responsive layout for smaller screens */
+        @media (max-width: 1200px) {
+            .form-row {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns on medium screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr; /* Single column on small screens */
+            }
+        }
+
+        /* Add styles for sortable headers */
+        .transactions-table th {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .transactions-table th:hover {
+            background-color: #48484a;
+        }
+
+        .transactions-table th:last-child {
+            cursor: default;
+        }
+
+        .transactions-table th:last-child:hover {
+            background-color: #3c3c3e;
         }
     </style>
     
@@ -183,6 +325,9 @@
         window.collection = collection;
         window.addDoc = addDoc;
     </script>
+
+    <!-- Add Chart.js library in the head section -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div id="login-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;">
@@ -200,7 +345,6 @@
 
     <div id="main-content" style="display: none;">
         <div class="header">
-            <h1>Budget Tracker</h1>
             <div class="counters">
                 <div class="counter">
                     <div class="counter-label">Entrate Totali</div>
@@ -216,7 +360,23 @@
                 </div>
                 <div class="counter">
                     <div class="counter-label">Deposito</div>
-                    <div id="deposito" class="counter-value neutral">€0.00</div>
+                    <div class="counter-value">
+                        <span>€</span>
+                        <input type="number" 
+                               id="deposito" 
+                               value="1000" 
+                               step="0.01" 
+                               onchange="updateTotals()"
+                               style="background: none; 
+                                      border: none; 
+                                      color: inherit; 
+                                      font-size: inherit; 
+                                      width: 100px; 
+                                      text-align: left;
+                                      padding: 0;
+                                      margin: 0;
+                                      outline: none;">
+                    </div>
                 </div>
                 <div class="counter">
                     <div class="counter-label">Totale</div>
@@ -232,6 +392,19 @@
                     <input type="date" id="date" required>
                 </div>
                 <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type" required onchange="updateCategories()">
+                        <option value="Entrata">Entrata</option>
+                        <option value="Uscita">Uscita</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select id="category" required>
+                        <option value="">Seleziona categoria</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="description">Descrizione</label>
                     <input type="text" id="description" required>
                 </div>
@@ -239,25 +412,60 @@
                     <label for="amount">Importo</label>
                     <input type="number" id="amount" step="0.01" required>
                 </div>
-                <div class="form-group">
-                    <label for="type">Tipo</label>
-                    <select id="type" required>
-                        <option value="Entrata">Entrata</option>
-                        <option value="Uscita">Uscita</option>
-                    </select>
-                </div>
             </div>
             <button onclick="addTransaction()" class="submit-btn">Aggiungi Transazione</button>
         </div>
 
+        <!-- Update the chart container to include both charts side by side -->
+        <div style="background-color: #2c2c2e; padding: 20px; border-radius: 12px; margin: 20px 0; height: 400px; display: flex; gap: 20px;">
+            <div style="flex: 1;">
+                <canvas id="expensesChart"></canvas>
+            </div>
+            <div style="flex: 1;">
+                <canvas id="totalsChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Update the date filter div to include import/export buttons -->
+        <div class="date-filter" style="margin-bottom: 20px; background-color: #2c2c2e; padding: 15px; border-radius: 12px;">
+            <div style="display: flex; gap: 20px; align-items: center; justify-content: space-between;">
+                <!-- Date filters -->
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <div class="form-group">
+                        <label for="start-date">Data Inizio</label>
+                        <input type="date" id="start-date" onchange="filterByDate()">
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date">Data Fine</label>
+                        <input type="date" id="end-date" onchange="filterByDate()">
+                    </div>
+                    <button class="submit-btn" onclick="resetDateFilter()" style="height: fit-content;">Reset</button>
+                </div>
+                
+                <!-- Import/Export buttons -->
+                <div style="display: flex; gap: 10px;">
+                    <input type="file" id="csvFileInput" accept=".csv" style="display: none;" onchange="importCSV(this)">
+                    <button class="submit-btn" onclick="document.getElementById('csvFileInput').click()">
+                        📥 Importa CSV
+                    </button>
+                    <button class="submit-btn" onclick="exportCSV()">
+                        📤 Esporta CSV
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Transactions table -->
         <div class="container">
             <table class="transactions-table">
                 <thead>
                     <tr>
-                        <th>Data</th>
-                        <th>Descrizione</th>
-                        <th>Importo</th>
-                        <th>Tipo</th>
+                        <th onclick="sortTable(0)">Data ↕</th>
+                        <th onclick="sortTable(1)">Tipo ↕</th>
+                        <th onclick="sortTable(2)">Categoria ↕</th>
+                        <th onclick="sortTable(3)">Descrizione ↕</th>
+                        <th onclick="sortTable(4)">Importo ↕</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="transactions-list">
@@ -268,7 +476,7 @@
 
     <script>
         // GitHub configuration
-        const GITHUB_USERNAME = 'your_username';
+        const GITHUB_USERNAME = 'fededraetta';
         const REPO_NAME = 'budget-tracker-data';
         const FILE_PATH = 'transactions.json';
         let GITHUB_TOKEN = null;
@@ -381,7 +589,14 @@
         // Function to save data to GitHub
         async function saveTransactions(transactions) {
             if (!await checkTokenValidity()) return;
-            const content = b64EncodeUnicode(JSON.stringify(transactions, null, 2));
+            const content = b64EncodeUnicode(JSON.stringify(transactions.map(t => ({
+                date: t.date,
+                type: t.type,
+                category: t.category,
+                description: t.description,
+                amount: t.amount,
+                timestamp: t.timestamp
+            })), null, 2));
             
             const body = {
                 message: 'Update transactions',
@@ -415,10 +630,11 @@
                 const description = document.getElementById('description').value;
                 const amount = parseFloat(document.getElementById('amount').value);
                 const type = document.getElementById('type').value;
+                const category = document.getElementById('category').value;
 
-                console.log('Adding transaction:', { date, description, amount, type });
+                console.log('Adding transaction:', { date, description, amount, type, category });
 
-                if (!date || !description || !amount || !type) {
+                if (!date || !description || !amount || !type || !category) {
                     alert('Please fill all fields');
                     return;
                 }
@@ -431,6 +647,7 @@
                     description,
                     amount,
                     type,
+                    category,
                     timestamp: new Date().getTime()
                 });
 
@@ -446,6 +663,7 @@
                 document.getElementById('description').value = '';
                 document.getElementById('amount').value = '';
                 document.getElementById('type').value = 'Entrata';
+                document.getElementById('category').value = '';
             } catch (error) {
                 console.error('Error in addTransaction:', error);
                 alert('Error adding transaction: ' + error.message);
@@ -457,13 +675,17 @@
             const transactions = await fetchTransactions();
             let entrateTotali = 0;
             let usciteTotali = 0;
-            const depositoValue = 1000; // Set your initial deposito value
+            
+            // Get saved deposito value or use default
+            const savedDeposito = localStorage.getItem('depositoValue');
+            if (savedDeposito !== null) {
+                document.getElementById('deposito').value = savedDeposito;
+            }
 
-            // Update table
             const transactionsList = document.getElementById('transactions-list');
             transactionsList.innerHTML = '';
 
-            transactions.sort((a, b) => b.timestamp - a.timestamp).forEach(transaction => {
+            transactions.sort((a, b) => b.timestamp - a.timestamp).forEach((transaction, index) => {
                 if (transaction.type === 'Entrata') {
                     entrateTotali += transaction.amount;
                 } else {
@@ -471,23 +693,67 @@
                 }
 
                 const row = transactionsList.insertRow();
+                
+                // Add existing cells
                 row.insertCell(0).textContent = new Date(transaction.date).toLocaleDateString();
-                row.insertCell(1).textContent = transaction.description;
-                row.insertCell(2).textContent = `€${transaction.amount.toFixed(2)}`;
-                row.insertCell(3).textContent = transaction.type;
+                row.insertCell(1).textContent = transaction.type;
+                row.insertCell(2).textContent = transaction.category;
+                row.insertCell(3).textContent = transaction.description;
+                
+                const amountCell = row.insertCell(4);
+                amountCell.textContent = `€${transaction.amount.toFixed(2)}`;
+                amountCell.style.color = transaction.type === 'Entrata' ? 'green' : 'red';
+
+                // Add minimal delete button with just the emoji
+                const actionCell = row.insertCell(5);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '🗑️';
+                deleteButton.className = 'delete-btn';
+                deleteButton.onclick = () => deleteTransaction(index);
+                actionCell.appendChild(deleteButton);
             });
 
-            // Update counters
+            // Rest of the function remains the same
             const saldo = entrateTotali - usciteTotali;
             document.getElementById('entrate-totali').textContent = `€${entrateTotali.toFixed(2)}`;
             document.getElementById('uscite-totali').textContent = `€${usciteTotali.toFixed(2)}`;
             document.getElementById('saldo').textContent = `€${saldo.toFixed(2)}`;
-            document.getElementById('deposito').textContent = `€${depositoValue.toFixed(2)}`;
-            document.getElementById('totale').textContent = `€${(saldo + depositoValue).toFixed(2)}`;
+            document.getElementById('totale').textContent = `€${(saldo + (parseFloat(document.getElementById('deposito').value) || 0)).toFixed(2)}`;
+
+            // Update expenses chart
+            await updateExpensesChart();
         }
 
-        // Initialize the app when the page loads
-        document.addEventListener('DOMContentLoaded', initializeApp);
+        // Update the updateCategories function with the new category
+        function updateCategories() {
+            const typeSelect = document.getElementById('type');
+            const categorySelect = document.getElementById('category');
+            const selectedType = typeSelect.value;
+            
+            // Clear existing options
+            categorySelect.innerHTML = '<option value="">Seleziona categoria</option>';
+            
+            // Define categories for each type
+            const categories = {
+                'Entrata': ['Stipendio', 'Rimborso', 'Regalo', 'Altro'],
+                'Uscita': ['Trasporti', 'Affitto', 'Bollette', 'Supermercato', 
+                           'Abb_Mensili', 'Salute', 'Regali', 'Ristoranti', 'Viaggi', 'Svago']
+            };
+            
+            // Add new options based on selected type
+            categories[selectedType].forEach(category => {
+                const option = document.createElement('option');
+                option.value = category;
+                option.textContent = category;
+                categorySelect.appendChild(option);
+            });
+        }
+
+        // Call updateCategories when the page loads to initialize the category dropdown
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCategories();
+            initializeApp(); // Keep the existing initialization
+        });
 
         // Add event listener for token input (allow Enter key)
         document.getElementById('token-input').addEventListener('keypress', function(e) {
@@ -495,6 +761,471 @@
                 validateToken();
             }
         });
+
+        // Add the delete transaction function
+        async function deleteTransaction(index) {
+            if (confirm('Sei sicuro di voler eliminare questa transazione?')) {
+                try {
+                    const transactions = await fetchTransactions();
+                    transactions.splice(index, 1); // Remove the transaction at the specified index
+                    await saveTransactions(transactions);
+                    await updateDisplay();
+                } catch (error) {
+                    console.error('Error deleting transaction:', error);
+                    alert('Error deleting transaction: ' + error.message);
+                }
+            }
+        }
+
+        // Add sorting functionality
+        let sortDirections = {
+            0: true, // Data
+            1: true, // Tipo
+            2: true, // Categoria
+            3: true, // Descrizione
+            4: true  // Importo
+        };
+
+        async function sortTable(columnIndex) {
+            const transactions = await fetchTransactions();
+            
+            // Toggle sort direction
+            sortDirections[columnIndex] = !sortDirections[columnIndex];
+            const ascending = sortDirections[columnIndex];
+
+            // Sort based on column type
+            transactions.sort((a, b) => {
+                let valueA, valueB;
+
+                switch(columnIndex) {
+                    case 0: // Data
+                        valueA = new Date(a.date);
+                        valueB = new Date(b.date);
+                        break;
+                    case 1: // Tipo
+                        valueA = a.type;
+                        valueB = b.type;
+                        break;
+                    case 2: // Categoria
+                        valueA = a.category;
+                        valueB = b.category;
+                        break;
+                    case 3: // Descrizione
+                        valueA = a.description;
+                        valueB = b.description;
+                        break;
+                    case 4: // Importo
+                        valueA = a.amount;
+                        valueB = b.amount;
+                        break;
+                    default:
+                        return 0;
+                }
+
+                if (valueA < valueB) return ascending ? -1 : 1;
+                if (valueA > valueB) return ascending ? 1 : -1;
+                return 0;
+            });
+
+            // Update display with sorted data
+            const transactionsList = document.getElementById('transactions-list');
+            transactionsList.innerHTML = '';
+
+            let entrateTotali = 0;
+            let usciteTotali = 0;
+
+            transactions.forEach(transaction => {
+                if (transaction.type === 'Entrata') {
+                    entrateTotali += transaction.amount;
+                } else {
+                    usciteTotali += transaction.amount;
+                }
+
+                const row = transactionsList.insertRow();
+                
+                row.insertCell(0).textContent = new Date(transaction.date).toLocaleDateString();
+                row.insertCell(1).textContent = transaction.type;
+                row.insertCell(2).textContent = transaction.category;
+                row.insertCell(3).textContent = transaction.description;
+                
+                const amountCell = row.insertCell(4);
+                amountCell.textContent = `€${transaction.amount.toFixed(2)}`;
+                amountCell.style.color = transaction.type === 'Entrata' ? 'green' : 'red';
+
+                const deleteCell = row.insertCell(5);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '🗑️';
+                deleteButton.className = 'delete-btn';
+                deleteButton.onclick = () => deleteTransaction(transactions.indexOf(transaction));
+                deleteCell.appendChild(deleteButton);
+            });
+
+            // Update counters
+            const saldo = entrateTotali - usciteTotali;
+            const deposito = parseFloat(document.getElementById('deposito').value) || 0;
+            document.getElementById('entrate-totali').textContent = `€${entrateTotali.toFixed(2)}`;
+            document.getElementById('uscite-totali').textContent = `€${usciteTotali.toFixed(2)}`;
+            document.getElementById('saldo').textContent = `€${saldo.toFixed(2)}`;
+            document.getElementById('totale').textContent = `€${(saldo + deposito).toFixed(2)}`;
+        }
+
+        // Update the filterByDate function
+        async function filterByDate() {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            
+            const transactions = await fetchTransactions();
+            
+            const filteredTransactions = transactions.filter(transaction => {
+                if (!startDate && !endDate) return true;
+                
+                const transactionDate = new Date(transaction.date);
+                if (startDate && !endDate) {
+                    return transactionDate >= new Date(startDate);
+                }
+                if (!startDate && endDate) {
+                    return transactionDate <= new Date(endDate);
+                }
+                return transactionDate >= new Date(startDate) && 
+                       transactionDate <= new Date(endDate);
+            });
+
+            updateDisplayWithData(filteredTransactions);
+            updateExpensesChartWithData(filteredTransactions);
+        }
+
+        // Update the updateDisplayWithData function
+        function updateDisplayWithData(transactions) {
+            let entrateTotali = 0;
+            let usciteTotali = 0;
+            const depositoValue = parseFloat(document.getElementById('deposito').value) || 0;
+
+            const transactionsList = document.getElementById('transactions-list');
+            transactionsList.innerHTML = '';
+
+            transactions.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach((transaction, index) => {
+                if (transaction.type === 'Entrata') {
+                    entrateTotali += transaction.amount;
+                } else {
+                    usciteTotali += transaction.amount;
+                }
+
+                const row = transactionsList.insertRow();
+                
+                row.insertCell(0).textContent = new Date(transaction.date).toLocaleDateString();
+                row.insertCell(1).textContent = transaction.type;
+                row.insertCell(2).textContent = transaction.category;
+                row.insertCell(3).textContent = transaction.description;
+                
+                const amountCell = row.insertCell(4);
+                amountCell.textContent = `€${transaction.amount.toFixed(2)}`;
+                amountCell.style.color = transaction.type === 'Entrata' ? 'green' : 'red';
+
+                const deleteCell = row.insertCell(5);
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = '🗑️';
+                deleteButton.className = 'delete-btn';
+                deleteButton.onclick = () => deleteTransaction(index);
+                deleteCell.appendChild(deleteButton);
+            });
+
+            // Update counters
+            const saldo = entrateTotali - usciteTotali;
+            document.getElementById('entrate-totali').textContent = `€${entrateTotali.toFixed(2)}`;
+            document.getElementById('uscite-totali').textContent = `€${usciteTotali.toFixed(2)}`;
+            document.getElementById('saldo').textContent = `€${saldo.toFixed(2)}`;
+            document.getElementById('totale').textContent = `€${(saldo + depositoValue).toFixed(2)}`;
+        }
+
+        // Update the resetDateFilter function
+        function resetDateFilter() {
+            document.getElementById('start-date').value = '';
+            document.getElementById('end-date').value = '';
+            updateDisplay(); // This will show all transactions
+        }
+
+        let currentPieChart = null;
+        let currentBarChart = null;
+
+        // Add function to update bar chart
+        async function updateTotalsChart(transactions) {
+            try {
+                const entrate = transactions
+                    .filter(t => t.type === 'Entrata')
+                    .reduce((sum, t) => sum + t.amount, 0);
+                
+                const uscite = transactions
+                    .filter(t => t.type === 'Uscita')
+                    .reduce((sum, t) => sum + t.amount, 0);
+
+                const ctx = document.getElementById('totalsChart').getContext('2d');
+
+                if (currentBarChart) {
+                    currentBarChart.destroy();
+                }
+
+                currentBarChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Entrate', 'Uscite'],
+                        datasets: [{
+                            data: [entrate, uscite],
+                            backgroundColor: ['#4CAF50', '#FF5252'],
+                            borderWidth: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return `€${context.raw.toFixed(2)}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    color: '#ffffff',
+                                    callback: function(value) {
+                                        return '€' + value.toFixed(0);
+                                    }
+                                },
+                                grid: {
+                                    color: '#3c3c3e'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#ffffff'
+                                },
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error updating totals chart:', error);
+            }
+        }
+
+        // Update the existing updateExpensesChartWithData function
+        async function updateExpensesChartWithData(transactions) {
+            try {
+                const expensesByCategory = transactions
+                    .filter(t => t.type === 'Uscita')
+                    .reduce((acc, t) => {
+                        acc[t.category] = (acc[t.category] || 0) + t.amount;
+                        return acc;
+                    }, {});
+
+                const ctx = document.getElementById('expensesChart').getContext('2d');
+
+                if (currentPieChart) {
+                    currentPieChart.destroy();
+                }
+
+                currentPieChart = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: Object.keys(expensesByCategory),
+                        datasets: [{
+                            data: Object.values(expensesByCategory),
+                            backgroundColor: [
+                                '#FF6B6B', // Red
+                                '#4ECDC4', // Teal
+                                '#45B7D1', // Blue
+                                '#96CEB4', // Green
+                                '#FFEEAD', // Yellow
+                                '#D4A5A5', // Pink
+                                '#9FA4A9', // Gray
+                                '#CC99C9', // Purple
+                                '#FAD02C'  // Gold
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: {
+                                    color: '#ffffff',
+                                    font: {
+                                        size: 14
+                                    },
+                                    padding: 20
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        const value = context.raw;
+                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                        const percentage = ((value / total) * 100).toFixed(1);
+                                        return `€${value.toFixed(2)} (${percentage}%)`;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Update bar chart with the same data
+                await updateTotalsChart(transactions);
+            } catch (error) {
+                console.error('Error updating charts:', error);
+            }
+        }
+
+        // Update the original updateExpensesChart function to use the new method
+        async function updateExpensesChart() {
+            const transactions = await fetchTransactions();
+            updateExpensesChartWithData(transactions);
+        }
+
+        // Add function to update totals when deposito changes
+        function updateTotals() {
+            const entrateTotali = parseFloat(document.getElementById('entrate-totali').textContent.replace('€', '')) || 0;
+            const usciteTotali = parseFloat(document.getElementById('uscite-totali').textContent.replace('€', '')) || 0;
+            const deposito = parseFloat(document.getElementById('deposito').value) || 0;
+            const saldo = entrateTotali - usciteTotali;
+            
+            // Save deposito value to localStorage
+            localStorage.setItem('depositoValue', deposito);
+            
+            // Update totale
+            document.getElementById('totale').textContent = `€${(saldo + deposito).toFixed(2)}`;
+        }
+
+        // Initialize deposito from localStorage when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedDeposito = localStorage.getItem('depositoValue');
+            if (savedDeposito !== null) {
+                document.getElementById('deposito').value = savedDeposito;
+            }
+        });
+
+        // Update CSV import function to handle headers and categories correctly
+        async function importCSV(input) {
+            const file = input.files[0];
+            if (file) {
+                try {
+                    const text = await file.text();
+                    const rows = text.split('\n');
+                    
+                    // Define valid categories
+                    const validCategories = {
+                        'Entrata': ['Stipendio', 'Rimborso', 'Regalo', 'Altro'],
+                        'Uscita': ['Trasporti', 'Affitto', 'Bollette', 'Supermercato', 
+                                  'Abb_Mensili', 'Salute', 'Regali', 'Ristoranti', 'Viaggi', 'Svago', 'Altro']
+                    };
+
+                    // Verify headers
+                    const expectedHeaders = ['Data', 'Tipo', 'Categoria', 'Descrizione', 'Importo'];
+                    const firstRow = rows[0].split(';').map(h => h.trim());
+                    
+                    // Check if headers match
+                    if (!expectedHeaders.every((header, index) => header === firstRow[index])) {
+                        throw new Error('Il formato del file CSV non è corretto. Le intestazioni devono essere: Data; Tipo; Categoria; Descrizione; Importo');
+                    }
+
+                    const transactions = await fetchTransactions();
+                    
+                    // Process each row (skip header row)
+                    for (let i = 1; i < rows.length; i++) {
+                        if (rows[i].trim() === '') continue;
+                        
+                        const values = rows[i].split(';').map(v => v.trim());
+                        
+                        // Validate Tipo
+                        if (values[1] !== 'Entrata' && values[1] !== 'Uscita') {
+                            throw new Error(`Tipo non valido nella riga ${i + 1}. Deve essere 'Entrata' o 'Uscita'`);
+                        }
+
+                        // Add any new categories found in the CSV to validCategories
+                        if (!validCategories[values[1]].includes(values[2])) {
+                            validCategories[values[1]].push(values[2]);
+                        }
+
+                        const transaction = {
+                            date: values[0],
+                            type: values[1],
+                            category: values[2],
+                            description: values[3],
+                            amount: parseFloat(values[4].replace(',', '.')),
+                            timestamp: new Date().getTime()
+                        };
+
+                        // Validate all fields are present
+                        if (!transaction.date || !transaction.type || !transaction.category || 
+                            !transaction.description || isNaN(transaction.amount)) {
+                            throw new Error(`Dati non validi nella riga ${i + 1}`);
+                        }
+
+                        transactions.push(transaction);
+                    }
+
+                    // Update the categories in the dropdown
+                    updateCategories();
+
+                    await saveTransactions(transactions);
+                    await updateDisplay();
+                    alert('Importazione completata con successo!');
+                    
+                } catch (error) {
+                    console.error('Error importing CSV:', error);
+                    alert('Errore durante l\'importazione: ' + error.message);
+                }
+            }
+            // Reset file input
+            input.value = '';
+        }
+
+        // Add CSV export function with proper data fetching
+        async function exportCSV() {
+            try {
+                const transactions = await fetchTransactions();
+                
+                // Create CSV content
+                const headers = ['Data', 'Tipo', 'Categoria', 'Descrizione', 'Importo'];
+                const csvContent = [
+                    headers.join(','),
+                    ...transactions.map(t => [
+                        t.date,
+                        t.type,
+                        t.category,
+                        t.description,
+                        t.amount
+                    ].join(','))
+                ].join('\n');
+
+                // Create download link
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = `budget_tracker_${new Date().toISOString().split('T')[0]}.csv`;
+                
+                // Trigger download
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+            } catch (error) {
+                console.error('Error exporting CSV:', error);
+                alert('Errore durante l\'esportazione: ' + error.message);
+            }
+        }
     </script>
 </body>
 </html> 
