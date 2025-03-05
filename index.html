@@ -185,70 +185,85 @@
     </script>
 </head>
 <body>
-    <div class="header">
-        <h1>Budget Tracker</h1>
-        <div class="counters">
-            <div class="counter">
-                <div class="counter-label">Entrate Totali</div>
-                <div id="entrate-totali" class="counter-value positive">€0.00</div>
-            </div>
-            <div class="counter">
-                <div class="counter-label">Uscite Totali</div>
-                <div id="uscite-totali" class="counter-value negative">€0.00</div>
-            </div>
-            <div class="counter">
-                <div class="counter-label">Saldo</div>
-                <div id="saldo" class="counter-value neutral">€0.00</div>
-            </div>
-            <div class="counter">
-                <div class="counter-label">Deposito</div>
-                <div id="deposito" class="counter-value neutral">€0.00</div>
-            </div>
-            <div class="counter">
-                <div class="counter-label">Totale</div>
-                <div id="totale" class="counter-value neutral">€0.00</div>
-            </div>
+    <div id="login-screen" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <h2>Budget Tracker Login</h2>
+        <div style="margin: 20px; text-align: center;">
+            <input type="password" id="token-input" placeholder="Enter GitHub Token" style="padding: 10px; margin: 10px; width: 300px;">
+            <br>
+            <button onclick="validateToken()" style="padding: 10px 20px; margin: 10px; background-color: #007AFF; color: white; border: none; border-radius: 6px;">Login</button>
+            <br>
+            <label>
+                <input type="checkbox" id="remember-token"> Remember token
+            </label>
         </div>
     </div>
 
-    <div class="input-form">
-        <div class="form-row">
-            <div class="form-group">
-                <label for="date">Data</label>
-                <input type="date" id="date" required>
-            </div>
-            <div class="form-group">
-                <label for="description">Descrizione</label>
-                <input type="text" id="description" required>
-            </div>
-            <div class="form-group">
-                <label for="amount">Importo</label>
-                <input type="number" id="amount" step="0.01" required>
-            </div>
-            <div class="form-group">
-                <label for="type">Tipo</label>
-                <select id="type" required>
-                    <option value="Entrata">Entrata</option>
-                    <option value="Uscita">Uscita</option>
-                </select>
+    <div id="main-content" style="display: none;">
+        <div class="header">
+            <h1>Budget Tracker</h1>
+            <div class="counters">
+                <div class="counter">
+                    <div class="counter-label">Entrate Totali</div>
+                    <div id="entrate-totali" class="counter-value positive">€0.00</div>
+                </div>
+                <div class="counter">
+                    <div class="counter-label">Uscite Totali</div>
+                    <div id="uscite-totali" class="counter-value negative">€0.00</div>
+                </div>
+                <div class="counter">
+                    <div class="counter-label">Saldo</div>
+                    <div id="saldo" class="counter-value neutral">€0.00</div>
+                </div>
+                <div class="counter">
+                    <div class="counter-label">Deposito</div>
+                    <div id="deposito" class="counter-value neutral">€0.00</div>
+                </div>
+                <div class="counter">
+                    <div class="counter-label">Totale</div>
+                    <div id="totale" class="counter-value neutral">€0.00</div>
+                </div>
             </div>
         </div>
-        <button onclick="addTransaction()" class="submit-btn">Aggiungi Transazione</button>
-    </div>
 
-    <div class="container">
-        <table class="transactions-table">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Descrizione</th>
-                    <th>Importo</th>
-                    <th>Tipo</th>
-                </tr>
-            </thead>
-            <tbody id="transactions-list">
-            </tbody>
-        </table>
+        <div class="input-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="date">Data</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrizione</label>
+                    <input type="text" id="description" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Importo</label>
+                    <input type="number" id="amount" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Tipo</label>
+                    <select id="type" required>
+                        <option value="Entrata">Entrata</option>
+                        <option value="Uscita">Uscita</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="addTransaction()" class="submit-btn">Aggiungi Transazione</button>
+        </div>
+
+        <div class="container">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Descrizione</th>
+                        <th>Importo</th>
+                        <th>Tipo</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-list">
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script>
@@ -256,16 +271,72 @@
         const GITHUB_USERNAME = 'your_username';
         const REPO_NAME = 'budget-tracker-data';
         const FILE_PATH = 'transactions.json';
-        
-        // Get token from localStorage or prompt user
-        let GITHUB_TOKEN = localStorage.getItem('github_token');
-        if (!GITHUB_TOKEN) {
-            GITHUB_TOKEN = prompt('Please enter your GitHub token:');
-            if (GITHUB_TOKEN) {
-                if (confirm('Would you like to save the token for future use?')) {
-                    localStorage.setItem('github_token', GITHUB_TOKEN);
+        let GITHUB_TOKEN = null;
+
+        // Token validation function
+        async function validateToken(token = null) {
+            const tokenToValidate = token || document.getElementById('token-input').value;
+            if (!tokenToValidate) {
+                alert('Please enter a token');
+                return false;
+            }
+
+            try {
+                const response = await fetch('https://api.github.com/user', {
+                    headers: {
+                        'Authorization': `token ${tokenToValidate}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                if (response.ok) {
+                    GITHUB_TOKEN = tokenToValidate;
+                    if (document.getElementById('remember-token').checked) {
+                        localStorage.setItem('github_token', tokenToValidate);
+                    }
+                    showMainContent();
+                    return true;
+                } else {
+                    throw new Error('Invalid token');
+                }
+            } catch (error) {
+                alert('Invalid token. Please try again.');
+                localStorage.removeItem('github_token');
+                return false;
+            }
+        }
+
+        // Show main content after successful validation
+        function showMainContent() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            updateDisplay(); // Load initial data
+        }
+
+        // Show login screen
+        function showLoginScreen() {
+            document.getElementById('login-screen').style.display = 'flex';
+            document.getElementById('main-content').style.display = 'none';
+        }
+
+        // Initialize the app
+        async function initializeApp() {
+            const savedToken = localStorage.getItem('github_token');
+            if (savedToken) {
+                if (await validateToken(savedToken)) {
+                    return;
                 }
             }
+            showLoginScreen();
+        }
+
+        // Check token validity before each operation
+        async function checkTokenValidity() {
+            if (!GITHUB_TOKEN) {
+                showLoginScreen();
+                return false;
+            }
+            return true;
         }
 
         // Base64 encoding/decoding functions
@@ -284,6 +355,7 @@
 
         // Function to fetch data from GitHub
         async function fetchTransactions() {
+            if (!await checkTokenValidity()) return [];
             try {
                 const response = await fetch(`https://api.github.com/repos/${GITHUB_USERNAME}/${REPO_NAME}/contents/${FILE_PATH}`, {
                     headers: {
@@ -308,6 +380,7 @@
 
         // Function to save data to GitHub
         async function saveTransactions(transactions) {
+            if (!await checkTokenValidity()) return;
             const content = b64EncodeUnicode(JSON.stringify(transactions, null, 2));
             
             const body = {
@@ -336,6 +409,7 @@
 
         // Function to add a new transaction
         async function addTransaction() {
+            if (!await checkTokenValidity()) return;
             try {
                 const date = document.getElementById('date').value;
                 const description = document.getElementById('description').value;
@@ -412,11 +486,15 @@
             document.getElementById('totale').textContent = `€${(saldo + depositoValue).toFixed(2)}`;
         }
 
-        // Initial load
-        document.addEventListener('DOMContentLoaded', updateDisplay);
+        // Initialize the app when the page loads
+        document.addEventListener('DOMContentLoaded', initializeApp);
 
-        // Add auto-refresh every 30 seconds
-        setInterval(updateDisplay, 30000);
+        // Add event listener for token input (allow Enter key)
+        document.getElementById('token-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                validateToken();
+            }
+        });
     </script>
 </body>
 </html> 
