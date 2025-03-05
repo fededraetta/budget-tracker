@@ -336,33 +336,46 @@
 
         // Function to add a new transaction
         async function addTransaction() {
-            const date = document.getElementById('date').value;
-            const description = document.getElementById('description').value;
-            const amount = parseFloat(document.getElementById('amount').value);
-            const type = document.getElementById('type').value;
+            try {
+                const date = document.getElementById('date').value;
+                const description = document.getElementById('description').value;
+                const amount = parseFloat(document.getElementById('amount').value);
+                const type = document.getElementById('type').value;
 
-            if (!date || !description || !amount || !type) {
-                alert('Please fill all fields');
-                return;
+                console.log('Adding transaction:', { date, description, amount, type });
+
+                if (!date || !description || !amount || !type) {
+                    alert('Please fill all fields');
+                    return;
+                }
+
+                const transactions = await fetchTransactions();
+                console.log('Current transactions:', transactions);
+
+                transactions.push({
+                    date,
+                    description,
+                    amount,
+                    type,
+                    timestamp: new Date().getTime()
+                });
+
+                console.log('Saving transactions...');
+                await saveTransactions(transactions);
+                console.log('Transactions saved successfully');
+
+                await updateDisplay();
+                console.log('Display updated');
+
+                // Clear form
+                document.getElementById('date').value = '';
+                document.getElementById('description').value = '';
+                document.getElementById('amount').value = '';
+                document.getElementById('type').value = 'Entrata';
+            } catch (error) {
+                console.error('Error in addTransaction:', error);
+                alert('Error adding transaction: ' + error.message);
             }
-
-            const transactions = await fetchTransactions();
-            transactions.push({
-                date,
-                description,
-                amount,
-                type,
-                timestamp: new Date().getTime()
-            });
-
-            await saveTransactions(transactions);
-            await updateDisplay();
-
-            // Clear form
-            document.getElementById('date').value = '';
-            document.getElementById('description').value = '';
-            document.getElementById('amount').value = '';
-            document.getElementById('type').value = 'Entrata';
         }
 
         // Function to update the display
